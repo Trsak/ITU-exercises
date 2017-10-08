@@ -116,9 +116,6 @@ void onPaint(HWND hWnd)
 {
 	PAINTSTRUCT ps;                 // information can be used to paint the client area of a window owned by that application
 	HDC         hDC;                // device context
-	char        text[256];          // buffer to store an output text
-	HFONT       font;               // new large font
-	HFONT       oldFont;            // saves the previous font
 	HBRUSH      brush;
 	HPEN        Pen;
 
@@ -129,30 +126,30 @@ void onPaint(HWND hWnd)
 	Pen = CreatePen(PS_SOLID, 10, RGB(0, 153, 153));
 	SelectObject(hDC, Pen);
 	brush = CreateSolidBrush(RGB(0, 153, 153));
-	//Right leg
-	MoveToEx(hDC, 270, 250, NULL);
-	LineTo(hDC, 290, 290);
 	//Left leg
 	MoveToEx(hDC, 270, 250, NULL);
 	LineTo(hDC, 250, 290);
+	//Right leg
+	MoveToEx(hDC, 270, 250, NULL);
+	LineTo(hDC, 290, 290);
 
 	//Arms
 	Pen = CreatePen(PS_SOLID, 10, RGB(0, 153, 153));
 	SelectObject(hDC, Pen);
 	brush = CreateSolidBrush(RGB(0, 153, 153));
-	//Right arm
-	MoveToEx(hDC, 280, 210, NULL);
-	LineTo(hDC, 290, 230);
 	//Left arm
 	MoveToEx(hDC, 260, 210, NULL);
 	LineTo(hDC, 250, 230);
+	//Right arm
+	MoveToEx(hDC, 280, 210, NULL);
+	LineTo(hDC, 290, 230);
 
 	//Body
 	Pen = CreatePen(PS_SOLID, 1, RGB(0, 102, 204));
 	SelectObject(hDC, Pen);
 	brush = CreateSolidBrush(RGB(0, 102, 204));
 	SelectObject(hDC, brush);
-	Rectangle(hDC, 260, 200, 280, 260); 
+	Rectangle(hDC, 260, 200, 280, 260);
 
 	//Head
 	Pen = CreatePen(PS_SOLID, 1, RGB(255, 153, 0));
@@ -160,6 +157,34 @@ void onPaint(HWND hWnd)
 	brush = CreateSolidBrush(RGB(255, 153, 0));
 	SelectObject(hDC, brush);
 	Ellipse(hDC, 240, 140, 300, 200);
+
+	//Mouth
+	Pen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+	SelectObject(hDC, Pen);
+	brush = CreateSolidBrush(RGB(255, 0, 0));
+	SelectObject(hDC, brush);
+	MoveToEx(hDC, 260, 180, NULL);
+	LineTo(hDC, 280, 180);
+
+	//Eyes
+	Pen = CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+	SelectObject(hDC, Pen);
+	brush = CreateSolidBrush(RGB(255, 255, 255));
+	SelectObject(hDC, brush);
+	//Left eye
+	Ellipse(hDC, 250, 150, 270, 170);
+	//Right eye
+	Ellipse(hDC, 270, 150, 290, 170);
+
+	//Lens
+	Pen = CreatePen(PS_SOLID, 1, RGB(198, 140, 83));
+	SelectObject(hDC, Pen);
+	brush = CreateSolidBrush(RGB(198, 140, 83));
+	SelectObject(hDC, brush);
+	//Left len
+	Ellipse(hDC, 258, 158, 263, 163);
+	//Right len
+	Ellipse(hDC, 278, 158, 283, 163);
 
 	DeleteDC(hDC);                  // deletes the specified device context
 	EndPaint(hWnd, &ps);            // marks the end of painting in the specified window
